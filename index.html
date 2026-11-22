@@ -1,18 +1,213 @@
 <!doctype html>
-<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>ClashX</title>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>ClashX · 클래쉬 엑스 — Idle Winter Survival</title>
+<meta name="description" content="눈보라 속 마을을 지키고, 키우고, 사계절을 건너는 방치형 생존 디펜스 게임 ClashX.">
+<meta property="og:title" content="ClashX · 클래쉬 엑스">
+<meta property="og:description" content="눈보라 속 마을을 지키고 키우는 방치형 생존 디펜스">
+<meta property="og:image" content="https://clashx-game.github.io/img/winter.jpg">
+<meta property="og:type" content="website">
+<meta name="theme-color" content="#0d1b2a">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22%3E%3Ctext y=%22.9em%22 font-size=%2290%22%3E❄️%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Jua&family=Lilita+One&family=Noto+Sans+KR:wght@400;700&display=swap" rel="stylesheet">
 <style>
-body{margin:0;font-family:system-ui,-apple-system,"Apple SD Gothic Neo","Noto Sans KR",sans-serif;background:#1B2A3A;color:#fff;display:flex;min-height:100vh;align-items:center;justify-content:center;text-align:center}
-main{padding:32px 20px;max-width:520px}
-h1{font-size:40px;margin:0 0 8px}
-p{margin:6px 0;opacity:.92;font-size:17px}
-a{color:#fff}
-.btn{display:inline-block;margin-top:24px;padding:12px 22px;border-radius:999px;background:#fff;color:#1B2A3A;font-weight:700;text-decoration:none}
-small{display:block;margin-top:28px;opacity:.75}
-</style></head>
-<body><main>
-<h1>❄️ ClashX</h1>
-<p>클래쉬 엑스 · Idle Winter Survival</p>
-<a class="btn" href="https://play.google.com/store/apps/details?id=com.clashx.winter.survival">Google Play</a>
-<small>문의 · Contact: <a href="mailto:dhoguider@gmail.com">dhoguider@gmail.com</a></small>
-</main></body></html>
+:root{
+  --ink:#0d1b2a; --ink2:#14283d; --ice:#bfe6ff; --frost:#e9f6ff; --gold:#ffc94a; --ember:#ff7a3d;
+  --card:rgba(255,255,255,.06); --line:rgba(191,230,255,.18);
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--ink);color:var(--frost);font-family:"Noto Sans KR",system-ui,-apple-system,"Apple SD Gothic Neo",sans-serif;line-height:1.6;overflow-x:hidden}
+a{color:inherit}
+.display{font-family:"Lilita One","Jua",system-ui,sans-serif;letter-spacing:.5px}
+.ko .display{font-family:"Jua","Lilita One",system-ui,sans-serif}
+
+/* ── hero ── */
+.hero{position:relative;min-height:100svh;display:flex;align-items:flex-end;justify-content:center;text-align:center;
+  background:url(img/winter.jpg) center/cover no-repeat;isolation:isolate}
+.hero::before{content:"";position:absolute;inset:0;z-index:-1;
+  background:linear-gradient(180deg,rgba(13,27,42,.15) 0%,rgba(13,27,42,.25) 40%,rgba(13,27,42,.92) 82%,var(--ink) 100%)}
+#snow{position:absolute;inset:0;z-index:0;pointer-events:none}
+.hero-in{position:relative;z-index:1;padding:0 20px 11vh;max-width:760px}
+.badge{display:inline-flex;gap:8px;align-items:center;padding:6px 14px;border-radius:999px;background:rgba(13,27,42,.55);border:1px solid var(--line);font-size:14px;backdrop-filter:blur(6px)}
+.badge i{width:8px;height:8px;border-radius:50%;background:#5dff9b;box-shadow:0 0 10px #5dff9b}
+h1{margin:18px 0 4px;font-size:clamp(56px,11vw,112px);line-height:1;color:#fff;
+  text-shadow:0 4px 0 #1f4e79,0 8px 0 #12324f,0 14px 30px rgba(0,0,0,.55)}
+h1 .x{color:var(--gold);text-shadow:0 4px 0 #b4561d,0 8px 0 #7a3510,0 14px 30px rgba(0,0,0,.55)}
+.sub{font-size:clamp(17px,2.4vw,21px);opacity:.95;margin:6px 0 0}
+.tag{font-size:15px;opacity:.75;margin:2px 0 0;letter-spacing:.3px}
+.cta{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-top:26px}
+.play{display:inline-flex;align-items:center;gap:12px;padding:13px 24px 13px 18px;border-radius:16px;text-decoration:none;
+  background:linear-gradient(180deg,#ffd768,#ffb52e);color:#3a1d00;font-weight:700;font-size:18px;
+  box-shadow:0 5px 0 #b86d0a,0 12px 26px rgba(255,170,40,.35);transition:transform .15s,box-shadow .15s}
+.play:hover{transform:translateY(-2px);box-shadow:0 7px 0 #b86d0a,0 16px 30px rgba(255,170,40,.45)}
+.play:active{transform:translateY(3px);box-shadow:0 2px 0 #b86d0a}
+.play svg{width:26px;height:26px}
+.play small{display:block;font-size:11px;font-weight:400;opacity:.8;line-height:1.1}
+.ghost{display:inline-flex;align-items:center;padding:13px 22px;border-radius:16px;border:1.5px solid var(--line);text-decoration:none;font-weight:700;background:rgba(13,27,42,.4);backdrop-filter:blur(6px)}
+.ghost:hover{border-color:var(--ice)}
+.scroll{position:absolute;left:50%;bottom:22px;transform:translateX(-50%);z-index:1;width:26px;height:42px;border:2px solid rgba(255,255,255,.5);border-radius:14px}
+.scroll::after{content:"";position:absolute;left:50%;top:8px;width:4px;height:8px;margin-left:-2px;border-radius:2px;background:#fff;animation:sc 1.8s infinite}
+@keyframes sc{0%{opacity:0;transform:translateY(0)}40%{opacity:1}100%{opacity:0;transform:translateY(12px)}}
+
+/* ── sections ── */
+section{padding:88px 20px;max-width:1120px;margin:0 auto}
+.eyebrow{color:var(--gold);font-weight:700;font-size:14px;letter-spacing:2px;text-transform:uppercase;text-align:center}
+h2{font-size:clamp(32px,5vw,48px);margin:6px 0 10px;text-align:center;color:#fff}
+.lead{text-align:center;max-width:620px;margin:0 auto 44px;opacity:.82}
+
+.feats{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:18px}
+.feat{background:var(--card);border:1px solid var(--line);border-radius:22px;padding:26px 22px;position:relative;overflow:hidden;transition:transform .25s,border-color .25s}
+.feat:hover{transform:translateY(-4px);border-color:rgba(255,201,74,.5)}
+.feat .ic{font-size:34px;width:60px;height:60px;display:grid;place-items:center;border-radius:18px;background:linear-gradient(160deg,#1f4e79,#12324f);box-shadow:inset 0 -3px 0 rgba(0,0,0,.25)}
+.feat h3{margin:16px 0 6px;font-size:21px;color:#fff}
+.feat p{margin:0;opacity:.78;font-size:15px}
+
+/* seasons */
+.seasons{display:grid;grid-template-columns:repeat(5,1fr);gap:14px}
+.season{position:relative;border-radius:20px;overflow:hidden;aspect-ratio:3/4;background:#000;border:1px solid var(--line);cursor:default}
+.season img{width:100%;height:100%;object-fit:cover;transition:transform .6s}
+.season:hover img{transform:scale(1.07)}
+.season::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 45%,rgba(0,0,0,.78))}
+.season .lab{position:absolute;left:14px;right:14px;bottom:14px;z-index:1}
+.season .lab b{display:block;font-size:22px;color:#fff}
+.season .lab span{font-size:13px;opacity:.85}
+.season .soon{position:absolute;top:12px;right:12px;z-index:1;font-size:12px;font-weight:700;padding:4px 10px;border-radius:999px;background:rgba(13,27,42,.75);border:1px solid var(--line)}
+.season.locked img{filter:saturate(.55) brightness(.75)}
+.s-winter{--c:#8fd3ff}.s-spring{--c:#9dff8a}.s-summer{--c:#ffd35c}.s-autumn{--c:#ff9a4d}.s-deep{--c:#b7a6ff}
+.season .lab b{color:var(--c)}
+
+/* big shot */
+.shot{margin:0 auto;max-width:1120px;padding:0 20px}
+.shot figure{margin:0;border-radius:26px;overflow:hidden;border:1px solid var(--line);box-shadow:0 30px 80px rgba(0,0,0,.45);position:relative}
+.shot img{display:block;width:100%}
+.shot figcaption{position:absolute;left:20px;bottom:18px;padding:8px 14px;border-radius:12px;background:rgba(13,27,42,.7);font-size:14px;backdrop-filter:blur(6px)}
+
+/* final */
+.final{text-align:center;padding:96px 20px 70px;background:radial-gradient(800px 360px at 50% 0%,rgba(255,201,74,.14),transparent 70%)}
+.final h2{margin-bottom:22px}
+footer{border-top:1px solid var(--line);padding:30px 20px 40px;text-align:center;font-size:14px;opacity:.72}
+footer a{color:var(--ice)}
+.lang{position:fixed;top:16px;right:16px;z-index:10;display:flex;border:1px solid var(--line);border-radius:999px;overflow:hidden;background:rgba(13,27,42,.6);backdrop-filter:blur(8px)}
+.lang button{all:unset;cursor:pointer;padding:6px 12px;font-size:13px;font-weight:700;opacity:.6}
+.lang button.on{opacity:1;background:rgba(191,230,255,.16)}
+
+.reveal{opacity:0;transform:translateY(24px);transition:opacity .7s,transform .7s}
+.reveal.in{opacity:1;transform:none}
+
+[data-en]{}
+.en [data-ko-only],.ko [data-en-only]{display:none}
+
+@media (max-width:900px){.seasons{grid-template-columns:repeat(3,1fr)}.season:nth-child(4),.season:nth-child(5){grid-column:span 1}}
+@media (max-width:560px){.seasons{grid-template-columns:repeat(2,1fr)}.season:last-child{grid-column:span 2;aspect-ratio:16/10}section{padding:64px 18px}}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}.reveal{opacity:1;transform:none}#snow{display:none}}
+</style>
+</head>
+<body class="ko">
+
+<div class="lang" role="group" aria-label="Language">
+  <button data-l="ko" class="on">한국어</button><button data-l="en">EN</button>
+</div>
+
+<header class="hero">
+  <canvas id="snow" aria-hidden="true"></canvas>
+  <div class="hero-in">
+    <span class="badge"><i></i><span data-t="badge">Google Play에서 무료로 플레이</span></span>
+    <h1 class="display">Clash<span class="x">X</span></h1>
+    <p class="sub" data-t="sub">눈보라 속 마을을 지키고, 키우고, 사계절을 건너라</p>
+    <p class="tag">클래쉬 엑스 · Idle Winter Survival</p>
+    <div class="cta">
+      <a class="play" href="https://play.google.com/store/apps/details?id=com.clashx.winter.survival" rel="noopener">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="#3a1d00" d="M4 2.6v18.8c0 .5.5.8.9.6l10.8-10.1L4.9 2c-.4-.2-.9.1-.9.6zm13.1 7.1L6.6 1.6l9.1 8.5 1.4-.4zm0 4.6-1.4-.4-9.1 8.5 10.5-8.1zm1.3-3.4-2 1.1 2 1.1 2.5-1.4c.6-.3.6-1.2 0-1.5l-2.5-1.3z"/></svg>
+        <span><small data-t="get">다운로드</small>Google Play</span>
+      </a>
+      <a class="ghost" href="#seasons" data-t="see">계절 둘러보기</a>
+    </div>
+  </div>
+  <a class="scroll" href="#about" aria-label="scroll"></a>
+</header>
+
+<section id="about" class="reveal">
+  <div class="eyebrow" data-t="e1">How to play</div>
+  <h2 class="display" data-t="h1">지키고, 모으고, 키운다</h2>
+  <p class="lead" data-t="l1">한 손으로 움직이며 나무를 베고, 고기를 굽고, 건물을 지어 밤마다 몰려오는 몬스터 무리를 막아 내세요.</p>
+  <div class="feats">
+    <div class="feat"><div class="ic">🛡️</div><h3 data-t="f1h">마을 방어</h3><p data-t="f1p">탑과 경비병을 세우고, 직접 칼을 휘둘러 웨이브를 막아 내세요.</p></div>
+    <div class="feat"><div class="ic">🪓</div><h3 data-t="f2h">모으고 짓기</h3><p data-t="f2p">나무와 고기를 모아 건물을 올리고, 장사로 코인을 벌어 마을을 키웁니다.</p></div>
+    <div class="feat"><div class="ic">⚔️</div><h3 data-t="f3h">무기와 스킬</h3><p data-t="f3p">무기를 강화하고 화려한 스킬로 몰려드는 무리를 한 번에 쓸어버리세요.</p></div>
+    <div class="feat"><div class="ic">👑</div><h3 data-t="f4h">장마다 보스</h3><p data-t="f4p">계절의 끝에는 저마다 다른 공격을 쓰는 거대한 보스가 기다립니다.</p></div>
+  </div>
+</section>
+
+<section id="seasons" class="reveal">
+  <div class="eyebrow" data-t="e2">Seasons</div>
+  <h2 class="display" data-t="h2">사계절을 건너는 모험</h2>
+  <p class="lead" data-t="l2">겨울에서 시작해 봄과 여름을 지나, 계절마다 새로운 땅과 몬스터를 만납니다.</p>
+  <div class="seasons">
+    <div class="season s-winter"><img src="img/winter.jpg" alt="Winter" loading="lazy"><div class="lab"><b data-t="sw">겨울</b><span data-t="swd">모든 것이 시작되는 눈 덮인 마을</span></div></div>
+    <div class="season s-spring"><img src="img/spring.jpg" alt="Spring" loading="lazy"><div class="lab"><b data-t="ss">봄</b><span data-t="ssd">눈이 녹고 새싹 몬스터가 깨어난다</span></div></div>
+    <div class="season s-summer"><img src="img/summer.jpg" alt="Summer" loading="lazy"><div class="lab"><b data-t="su">여름</b><span data-t="sud">뜨거운 해변과 바다의 보스들</span></div></div>
+    <div class="season s-autumn locked"><img src="img/autumn.jpg" alt="Autumn" loading="lazy"><span class="soon" data-t="soon">준비 중</span><div class="lab"><b data-t="sa">가을</b><span data-t="sad">붉게 물든 숲</span></div></div>
+    <div class="season s-deep locked"><img src="img/deepwinter.jpg" alt="Deep Winter" loading="lazy"><span class="soon" data-t="soon">준비 중</span><div class="lab"><b data-t="sd">깊은 겨울</b><span data-t="sdd">시계탑에 잠든 마지막 적</span></div></div>
+  </div>
+</section>
+
+<div class="shot reveal">
+  <figure><img src="img/summer.jpg" alt="ClashX summer village" loading="lazy"><figcaption data-t="cap">여름 마을 · 실제 게임 화면</figcaption></figure>
+</div>
+
+<div class="final reveal">
+  <h2 class="display" data-t="h3">지금, 눈보라 속으로</h2>
+  <a class="play" href="https://play.google.com/store/apps/details?id=com.clashx.winter.survival" rel="noopener">
+    <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="#3a1d00" d="M4 2.6v18.8c0 .5.5.8.9.6l10.8-10.1L4.9 2c-.4-.2-.9.1-.9.6zm13.1 7.1L6.6 1.6l9.1 8.5 1.4-.4zm0 4.6-1.4-.4-9.1 8.5 10.5-8.1zm1.3-3.4-2 1.1 2 1.1 2.5-1.4c.6-.3.6-1.2 0-1.5l-2.5-1.3z"/></svg>
+    <span><small data-t="get">다운로드</small>Google Play</span>
+  </a>
+</div>
+
+<footer>
+  <div>ClashX · 클래쉬 엑스</div>
+  <div><span data-t="contact">문의 · Contact</span>: <a href="mailto:dhoguider@gmail.com">dhoguider@gmail.com</a></div>
+</footer>
+
+<script>
+// 언어
+const EN={badge:"Free to play on Google Play",sub:"Defend your village, grow it, and cross the four seasons",get:"GET IT ON",see:"Explore seasons",
+e1:"How to play",h1:"Defend. Gather. Grow.",l1:"Move with one hand — chop wood, grill meat, raise buildings, and hold back the monster hordes that come every night.",
+f1h:"Village defense",f1p:"Build towers and hire guards, then swing your own blade to hold the line.",
+f2h:"Gather & build",f2p:"Collect wood and meat, raise new buildings, and run your shop to earn coins.",
+f3h:"Weapons & skills",f3p:"Upgrade your weapons and sweep whole hordes away with flashy skills.",
+f4h:"A boss every chapter",f4p:"At the end of each season a giant boss waits, each with its own attacks.",
+e2:"Seasons",h2:"A journey through the seasons",l2:"Start in winter, then cross spring and summer — new lands and new monsters every season.",
+sw:"Winter",swd:"A snowy village where it all begins",ss:"Spring",ssd:"The snow melts and sprout monsters awaken",su:"Summer",sud:"Hot beaches and bosses from the sea",
+sa:"Autumn",sad:"A forest turned red",sd:"Deep Winter",sdd:"The last foe sleeps in the clock tower",soon:"Coming soon",
+cap:"Summer village · in-game screenshot",h3:"Step into the blizzard",contact:"Contact"};
+const KO={};document.querySelectorAll("[data-t]").forEach(e=>{KO[e.dataset.t]=e.textContent});
+function setLang(l){document.body.className=l;document.documentElement.lang=l;const D=l==="en"?EN:KO;
+  document.querySelectorAll("[data-t]").forEach(e=>{const v=D[e.dataset.t];if(v)e.textContent=v});
+  document.querySelectorAll(".lang button").forEach(b=>b.classList.toggle("on",b.dataset.l===l));
+  try{localStorage.setItem("cx_lang",l)}catch(_){}}
+document.querySelectorAll(".lang button").forEach(b=>b.onclick=()=>setLang(b.dataset.l));
+let L="ko";try{L=localStorage.getItem("cx_lang")||((navigator.language||"").startsWith("ko")?"ko":"en")}catch(_){L=(navigator.language||"").startsWith("ko")?"ko":"en"}
+setLang(L);
+
+// 나타나기
+const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add("in");io.unobserve(e.target)}}),{threshold:.15});
+document.querySelectorAll(".reveal").forEach(e=>io.observe(e));
+
+// 눈
+(()=>{const c=document.getElementById("snow");if(!c||matchMedia("(prefers-reduced-motion: reduce)").matches)return;
+const x=c.getContext("2d");let W,H,F=[];const dpr=Math.min(2,devicePixelRatio||1);
+function size(){W=c.clientWidth;H=c.clientHeight;c.width=W*dpr;c.height=H*dpr;x.setTransform(dpr,0,0,dpr,0,0);
+  const n=Math.round(Math.min(160,W*H/9000));F=Array.from({length:n},()=>({x:Math.random()*W,y:Math.random()*H,r:Math.random()*2.4+.6,s:Math.random()*.6+.3,d:Math.random()*Math.PI*2}))}
+size();addEventListener("resize",size);
+let run=true;new IntersectionObserver(e=>run=e[0].isIntersecting).observe(c);
+(function f(){if(run){x.clearRect(0,0,W,H);x.fillStyle="rgba(255,255,255,.85)";x.beginPath();
+  for(const p of F){p.d+=.01;p.y+=p.s+p.r*.15;p.x+=Math.sin(p.d)*.4;if(p.y>H+4){p.y=-4;p.x=Math.random()*W}x.moveTo(p.x,p.y);x.arc(p.x,p.y,p.r,0,7)}
+  x.fill()}requestAnimationFrame(f)})();})();
+</script>
+</body>
+</html>
